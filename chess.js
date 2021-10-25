@@ -102,7 +102,7 @@ function checkmate(board, king, player) {
                 for (let k = 0; k < 8; k++) {
                     for (let l = 0; l < 8; l++) {
                         // if there is a move which is safe, it returns false
-                        if (not(check(board, i, j, k, l, king[!player]))) {
+                        if (not(check(board, i, j, k, l, king[not(player)]))) {
 			                return 0;
                         }
                     }
@@ -131,19 +131,19 @@ function check(board, sx, sy, ex, ey, king) {
             nboard[i][j][1] = board[i][j][1];
         }
     }
-    if (eval(board, sx, sy, ex, ey) && not((sx == ex) && (sy == ey)) && board[ey][ex][0] != board[sy][sx][0]) {
+    if (eval(board, sx, sy, ex, ey) && not((sx === ex) && (sy === ey)) && board[ey][ex][0] != board[sy][sx][0]) {
         // moves piece on the new board and sets kingx and kingy to their correct positions
         transfer_piece(nboard, sx, sy, ex, ey);
         let kingy = king[0];
         let kingx = king[1];
-	    if (sx == king[1] && sy == king[0]) {
+	    if (sx === king[1] && sy === king[0]) {
             kingy = ey;
        	    kingx = ex;
         }
         // loops through every spot on the board and checks to see if it can attack the king
         for (let i = 0; i < 8; i++) {
             for (let j = 0; j < 8; j++) {
-                if (nboard[j][i][0] != -1 && nboard[j][i][0] != nboard[kingy][kingx][0]) {
+                if (nboard[j][i][0] !== -1 && nboard[j][i][0] !== nboard[kingy][kingx][0]) {
                     if (eval(nboard, i, j, kingx, kingy)) {
                         return 1;
                     }
