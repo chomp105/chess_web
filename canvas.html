@@ -1,14 +1,30 @@
 <!DOCTYPE html>
 <html>
-
+    <meta charset="UTF-8">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
+        body {
+            background-color: #1a1a1a;
+        }
+
+        #reload {
+            position: absolute;
+            top: 360px;
+            left: 362.5px;
+            font-size: 100px;
+            display: none;
+        }
+
+        #reload:hover {
+            color: #182124;
+        }
     </style>
-    <canvas id="gc" width="800" height="800" style="background:#d18b47; border: 10px solid black;"></canvas>
+    <canvas id="gc" width="800" height="800" style="background:#48666e; border: 10px solid black;"></canvas> <!--#d18b47-->
     
     <img id="wr" style="display: none;" src="noun_Chess_1376836.png"/>
     <img id="wn" style="display: none;" src="noun_Chess_1376844.png"/>
@@ -23,7 +39,11 @@
     <img id="bk" style="display: none;" src="noun_Chess_1376845.png"/>
     <img id="bp" style="display: none;" src="noun_Chess_1376849.png"/>
     
-    <script src="script.js"></script>
-    <script src="chess.js"></script>
+    <ion-icon name="reload-outline" id="reload" onclick="reset()"></ion-icon>
 
+    <script src="chess.js"></script>
+    <script src="script.js"></script>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </html>
