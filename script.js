@@ -28,6 +28,10 @@ class Piece {
 
 let pieces_arr;
 
+function is_legal(move) {
+    return (move >= 0 && move < 8);
+}
+
 document.addEventListener("mousedown", (e) => {
     for (let i = 0; i < pieces_arr.length; i++) {
         if (e.clientX > pieces_arr[i].x * 100 + 10 && e.clientX < pieces_arr[i].x * 100 + 110 && 
@@ -58,14 +62,14 @@ document.addEventListener("mouseup", (e) => {
             pieces_arr[i].y = e.clientY - 10 - ((e.clientY - 10) % 100);
             pieces_arr[i].x /= 100;
             pieces_arr[i].y /= 100;
-            if (game_eval(prex, prey, pieces_arr[i].x, pieces_arr[i].y)) {
+            if (is_legal(pieces_arr[i].x) && is_legal(pieces_arr[i].y) && game_eval(prex, prey, pieces_arr[i].x, pieces_arr[i].y)) {
                 for (let j = 0; j < pieces_arr.length; j++) {
                     if (i == j) {
                         continue;
                     }
                     if (pieces_arr[j].x == pieces_arr[i].x && pieces_arr[j].y == pieces_arr[i].y) {
                         pieces_arr.splice(j, 1);
-                        console.log(prex, prey, pieces_arr[i].x, pieces_arr[i].y);
+                        gui();
                         break;
                     }
                 }
@@ -101,7 +105,7 @@ function gui() {
     }
 }
 
-let play = setInterval(gui, 1000/60);
+let play;// = setInterval(gui, 1000/60);;
 reset();
 
 function reset() {

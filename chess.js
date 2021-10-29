@@ -66,8 +66,8 @@ function move(board, sx, sy, ex, ey, king, player, game) {
                 }
             }
             clearInterval(play);
-            gui();
             document.getElementById("reload").style.display = "block";
+            gui();
             game = 0;
         }
         return 1;
